@@ -16,6 +16,19 @@ namespace Classes
             this.val = val;
         }
     }
+
+    public class TreeNode<T>
+    {
+        public T Data { get; set; }
+        public Node<T> LeftSibling { get; set; }
+        public Node<T> RightSibling { get; set; }
+
+        public TreeNode(T Data)
+        {
+            this.Data = Data;
+        }
+    }
+
     public class DoubleOrderedList<T> : IEnumerable<T>
     {
         Node<T> head;
@@ -166,7 +179,7 @@ namespace Classes
 
         public override int GetHashCode()
         {
-            return int.Parse(this.head.val.ToString());
+            return count;
         }
 
         //Indexing
