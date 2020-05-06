@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace CustomStructures
 {
+
+    /// <summary>
+    /// Auxiliary сlass for queue 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Node<T>
     {
             public T value { get; set; }

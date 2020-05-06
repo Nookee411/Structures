@@ -16,16 +16,29 @@ namespace CustomStructures
 {
     public class Queue<T>
     {
-        private Node<T> last;
-        private Node<T> first;
-        private int capacity;
+        private Node<T> last; //link to last node
+        private Node<T> first;//ling to first node
+        private int capacity; // Total capacity
 
-        public Queue(int capacity)
+        /// <summary>
+        /// Constructor which sets capacity
+        /// </summary>
+        /// <param name="capacity"></param>
+        public Queue(int capacity) 
         {
             last = null;
             first = null;
-            this.capacity = capacity;
+            if (capacity > 0)
+                this.capacity = capacity;
+            else
+                this.capacity = 0;
         }
+
+        /// <summary>
+        /// Constructor sets capacity and fills it with value
+        /// </summary>
+        /// <param name="capacity"></param>
+        /// <param name="value"></param>
         public Queue(int capacity, T value)
         {
             this.capacity = capacity;
@@ -47,6 +60,7 @@ namespace CustomStructures
                 throw new ArgumentException("Capacity can't be less than zero.");
         }
 
+        //Index override
         public T this[int index]
         {
             get 
@@ -77,7 +91,9 @@ namespace CustomStructures
             }
         }
 
-
+        /// <summary>
+        /// Property gets current amount of nodes in queue
+        /// </summary>
         public int Count
         {
             get
@@ -93,12 +109,19 @@ namespace CustomStructures
             }
         }
 
+
+        /// <summary>
+        /// Gets first value in queue and NOT removing it
+        /// </summary>
         public T Peak => first.value;
 
-
+        /// <summary>
+        /// Adds value to queue
+        /// </summary>
+        /// <param name="value"></param>
         public void Enqueue(T value)
         {
-            if (Count != capacity)
+            if (Count != capacity)//if there are available space for adding
             {
                 Node<T> temp = new Node<T>(value);
                 if (last == null)
@@ -116,6 +139,10 @@ namespace CustomStructures
                 throw new StackOverflowException();
         }
 
+        /// <summary>
+        /// Deletes value from top of queue and returns it
+        /// </summary>
+        /// <returns></returns>
         public T Dequeue()
         {
             T value = first.value;
@@ -123,7 +150,9 @@ namespace CustomStructures
             return value;
             
         }
-
+        /// <summary>
+        /// Gets of sets capacity. If it is less than current size of queue, throws an exeption
+        /// </summary>
         public int Capacity
         {
             get { return this.capacity; }
@@ -135,6 +164,7 @@ namespace CustomStructures
             }    
         }
 
+        //To sting override
         public override string ToString()
         {
             string res = "";
@@ -148,6 +178,12 @@ namespace CustomStructures
 
         }
 
+        /// <summary>
+        /// Merges two queues
+        /// </summary>
+        /// <param name="firstQ"></param>
+        /// <param name="secondQ"></param>
+        /// <returns></returns>
         public static Queue<T> Merge(Queue<T> firstQ, Queue<T> secondQ)
         {
             if (firstQ.Count>0 && secondQ.Count > 0)
@@ -161,10 +197,5 @@ namespace CustomStructures
             return firstQ;
         }
     }
-
-
-
-
-
 
 }
